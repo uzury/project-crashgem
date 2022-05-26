@@ -746,7 +746,7 @@ footer .social a:hover {
   }
 
   #home .image::after {
-    content: url(http://www.crashgem.com/uploads/8/1/8/2/81824876/discordcrashgem_orig.png);
+    content: url(./assets/discordcrashgem.png);
     height: 15rem;
     width: 100vw;
     position: absolute;
