@@ -1,0 +1,765 @@
+/* RESET SPACE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: bold;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+:root {
+  --header-height: 4.5rem;
+  --hue: 0;
+  --base-color: hsl(var(--hue) 76% 57%);
+  --base-color-second: hsl(var(--hue) 65% 88%);
+  --base-color-alt: hsl(var(--hue) 57% 53%);
+  --title-color: hsl(var(--hue) 41% 10%);
+  --text-color: hsl(0 0% 46%);
+  --text-color-light: hsl(0 0% 98%);
+  --body-color: hsl(0 0% 98%);
+
+  --title-font-size: 1.875rem;
+  --subtitle-font-size: 1rem;
+  --title-font: 'Lato', sans-serif;
+  --body-font: 'Lato', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font: 400 1rem var(--body-font);
+  color: var(--text-color);
+  background: var(--body-color);
+  -webkit-font-smoothing: antialiased;
+  margin-inline: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--base-color);
+}
+
+.title {
+  font: 700 var(--title-font-size) var(--title-font);
+  color: var(--title-color);
+  -webkit-font-smoothing: auto;
+}
+
+.button {
+  background-color: var(--base-color);
+  color: var(--text-color-light);
+  height: 4rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 2rem;
+  border-radius: 0.25rem;
+  font: 500 1rem var(--body-font);
+  transition: background 0.3s;
+  font-weight: 700;
+}
+
+.button:hover {
+  background: var(--base-color-alt);
+}
+
+.divider-1 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 36%, 57%, 1),
+    hsla(var(--hue), 65%, 88%, 0.34)
+  );
+}
+
+.divider-2 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 65%, 88%, 0.34),
+    hsla(var(--hue), 36%, 57%, 1)
+  );
+}
+
+.container {
+  margin-inline: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+#header {
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 2rem;
+  display: flex;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: var(--body-color);
+}
+
+#header.scroll {
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown {
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font: 700 var(--title-font-size) var(--title-font);
+  border: none;
+  outline: none;
+  background-color: inherit;
+  margin: 0;
+}
+
+.menu a:hover, .dropdown:hover .dropbtn {
+  color: var(--base-color);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--body-color);
+  min-width: 10rem;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  padding: 1rem;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  text-decoration: none;
+}
+
+.dropdown-content a::after {
+  content: '';
+  width: 0;
+  height: 2px;
+  background: var(--base-color);
+  position: absolute;
+  left: 0;
+  bottom: 0rem;
+  transition: width 0.2s;
+}
+
+.dropdown-content a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  text-decoration: none;
+}
+
+nav {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+nav ul li {
+  text-align: center;
+}
+
+nav ul li a {
+  transition: color 0.2;
+  position: relative;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--base-color);
+}
+
+nav ul li a::after {
+  content: '';
+  width: 0;
+  height: 2px;
+  background: var(--base-color);
+  position: absolute;
+  left: 0;
+  bottom: -1.5rem;
+  transition: width 0.2s;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+  width: 100%;
+}
+
+nav .menu {
+  opacity: 0;
+  visibility: hidden;
+  top: -20rem;
+  transition: 0.2s;
+}
+
+nav .menu ul {
+  display: none;
+}
+
+/* start nav.show */
+nav.show .menu {
+  opacity: 1;
+  visibility: visible;
+  background: var(--body-color);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-content: center;
+}
+
+nav.show .menu ul {
+  display: grid;
+}
+
+nav.show ul.grid {
+  gap: 4rem;
+}
+/* end nav.show */
+
+.toggle {
+  color: var(--base-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+nav .icon-cross {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: -1.5rem;
+  right: 1.5rem;
+  transition: 0.2s;
+}
+
+nav.show div.icon-cross {
+  visibility: visible;
+  opacity: 1;
+  top: 1.5rem;
+}
+
+.section {
+  padding: calc(1rem + var(--header-height)) 0;
+}
+
+.section .title {
+  margin-bottom: 1rem;
+}
+
+.section .subtitle {
+  font-size: var(--subtitle-font-size);
+}
+
+.section header {
+  margin-bottom: 4rem;
+}
+
+.section header strong {
+  color: var(--base-color);
+}
+
+.logo {
+  font: 700 1.31rem var(--title-font);
+  color: var(--title-color);
+  -webkit-font-smoothing: antialiased;
+  width: 5rem;
+}
+
+.logo span {
+  color: var(--base-color);
+}
+
+.logo-alt span {
+  color: var(--text-color-light);
+}
+
+.cards.grid {
+  gap: 1.5rem;
+}
+
+.card {
+  padding: 3.625rem 2rem;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+  border-bottom: 0.25rem solid var(--base-color);
+  border-radius: 0.25rem 0.25rem 0 0;
+  text-align: center;
+}
+
+.card i {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-size: 5rem;
+  color: var(--base-color);
+}
+
+.card .title {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* START HOME */
+#home {
+  overflow: hidden;
+}
+
+#home .container {
+  margin: 0;
+}
+
+#home .image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+#home .image::after {
+  content: url(http://www.crashgem.com/uploads/8/1/8/2/81824876/discordcrashgem_orig.png);
+  height: 15rem;
+  position: absolute;
+  top: 85%;
+  z-index: 0;
+  border-radius: 0.25rem;
+  filter: drop-shadow(5px 5px rgba(130,130,130,0.5));
+}
+
+#home .image img {
+  /* position: relative; */
+  right: 2.93rem;
+  border-radius: 0.25rem;
+}
+
+#home .title-schedule {
+  background-color: var(--title-color);
+  font-size: 2.5rem;
+  color: var(--text-color-light);
+  padding: 1rem;
+  text-align: center;
+}
+
+#home .p-schedule {
+  background-color: var(--title-color);
+  color: var(--text-color-light);
+  padding: 1rem;
+  margin-top: .3rem;
+  margin-bottom: 0;
+  text-align: end;
+}
+
+#home .p-schedule:nth-of-type(odd) {
+  text-align: left;
+}
+
+#home .p-schedule p:nth-child(1) {
+  text-align: left;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+#home .p-schedule p:nth-child(2) {
+  text-align: right;
+}
+
+#home .icon-youtube {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+#home .yt-button {
+  margin-block: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+#home .text {
+  align-items: center;
+}
+
+/* END HOME */
+
+/* START ABOUT */
+#about {
+  background: white;
+  overflow: hidden;
+}
+
+#about .section {
+  padding: 0;
+}
+
+#about .container {
+  margin: 0;
+}
+
+#about .art-credit {
+  text-align: center;
+  font-size: .8rem;
+}
+
+#about .image-crashgem{
+  width: 82%;
+  margin: auto;
+}
+
+/* #about .image::before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: var(--base-color-second);
+  position: absolute;
+  top: -8.3%;
+  left: -33%;
+  z-index: 0;
+  border-radius: 0.25rem;
+} */
+
+#about .image img {
+  position: relative;
+  border-radius: 0.25rem;
+}
+
+#about .text {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+/* END ABOUT */
+
+/* START SERVICES */
+/* END SERVICES */
+
+/* START TESTIMONIALS */
+#testimonials {
+  background: white;
+}
+
+#testimonials .title {
+  text-align: center;
+}
+
+#testimonials header {
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+  margin-bottom: 0;
+}
+
+#testimonials .container {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+#testimonials blockquote {
+  padding: 2rem;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 0.25rem;
+}
+#testimonials blockquote p {
+  position: relative;
+  text-indent: 1.875rem;
+  margin-bottom: 1.5rem;
+  color: var(--title-color);
+}
+#testimonials blockquote p span {
+  font: 700 2.5rem serif;
+  position: absolute;
+  top: -0.375rem;
+  left: -1.875rem;
+  color: var(--base-color);
+}
+#testimonials cite {
+  display: flex;
+  align-items: center;
+  font-style: normal;
+}
+#testimonials cite img {
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  clip-path: circle();
+  margin-right: 0.5rem;
+}
+/* END TESTIMONIALS */
+
+/* START CONTACT */
+
+#schedule {
+  background: white;
+  overflow: hidden;
+}
+
+#schedule .section {
+  padding: 0;
+}
+
+#schedule .container {
+  margin: auto;
+}
+
+#schedule .calendar-twitter {
+  display: grid;
+  justify-content: space-around;
+}
+
+#schedule .title {
+  text-align: center;
+}
+
+/* END CONTACT */
+
+.swiper-slide {
+  height: auto;
+  padding: 4rem 1rem;
+}
+
+.swiper-pagination-bullet {
+  width: 1rem;
+  height: 1rem;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--base-color);
+}
+/* START FOOTER */
+footer {
+  background: var(--base-color);
+}
+
+footer.section {
+  padding: 4rem 0;
+}
+
+footer .logo {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+footer .brand p {
+  color: var(--text-color-light);
+  margin-bottom: 0.75rem;
+}
+
+footer i {
+  font-size: 1.5rem;
+  color: var(--text-color-light);
+}
+
+footer .social {
+  grid-auto-flow: column;
+  width: fit-content;
+}
+
+footer .social a {
+  transition: 0.3s;
+  display: inline-block;
+}
+
+footer .social a:hover {
+  transform: translateY(-8px);
+}
+
+/* END FOOTER */
+.back-to-top {
+  background: var(--base-color);
+  color: var(--text-color-light);
+  font-size: 1.5rem;
+  position: fixed;
+  line-height: 0;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 1rem;
+  clip-path: circle();
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+  transform: translateY(100%);
+}
+.back-to-top.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+/* RESPONSIVO */
+/*  extra large device: 1200+ */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section {
+    padding: 10rem 0;
+  }
+  .section header,
+  #testimonials header {
+    max-width: 32rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .button {
+    height: 3.125rem;
+  }
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+  nav .menu ul {
+    display: flex;
+    gap: 2rem;
+  }
+  nav .menu ul li a.title {
+    font: 400 1rem var(--body-font);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .dropdown .dropbtn {
+    font: 400 1rem var(--body-font);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav .menu ul li a.title.active {
+    font-weight: bold;
+    -webkit-font-smoothing: auto;
+  }
+  nav .icon-menu {
+    display: none;
+  }
+  main {
+    margin-top: var(--header-height);
+  }
+
+  /* HOME */
+  #home .container {
+    grid-auto-flow: column;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+  #home .image {
+    order: 1;
+  }
+  #home .text {
+    order: 0;
+    max-width: 24rem;
+    text-align: left;
+  }
+
+  /* ABOUT */
+  #about .container {
+    grid-auto-flow: column;
+    margin: 0 auto;
+  }
+
+  /* SERVICES */
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .card {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials .container {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  /* CONTACT */
+  #contact .container {
+    grid-auto-flow: column;
+    align-items: center;
+  }
+  #contact .text {
+    max-width: 25rem;
+  }
+
+  /* FOOTER */
+  footer.section {
+    padding: 3.75rem 0;
+  }
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  footer .logo {
+    font-size: 2.25rem;
+  }
+
+  #schedule .calendar-twitter {
+    display: flex;
+    justify-content: space-around;
+  }
+  #home .image::after {
+    content: url(http://www.crashgem.com/uploads/8/1/8/2/81824876/discordcrashgem_orig.png);
+    height: 15rem;
+    width: 100vw;
+    position: absolute;
+    top: 90%;
+    left: 30%;
+    z-index: 0;
+    border-radius: 0.25rem;
+    filter: drop-shadow(5px 5px rgba(130,130,130,0.5));
+  }
+}
+/*  large devices: 1023+ */
+
+/*  large devices: 992+ */
+@media (min-width: 992px) {
+  :root {
+    --title-font-size: 2rem;
+    --subtitle-font-size: 1.125rem;
+  }
+
+  #home .image::after {
+    content: url(http://www.crashgem.com/uploads/8/1/8/2/81824876/discordcrashgem_orig.png);
+    height: 15rem;
+    width: 100vw;
+    position: absolute;
+    top: 90%;
+    left: 30%;
+    z-index: 0;
+    border-radius: 0.25rem;
+    filter: drop-shadow(5px 5px rgba(130,130,130,0.5));
+  }
+  #schedule .calendar-twitter {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+/*  medium devices (tablets): 767+ */
