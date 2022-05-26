@@ -725,7 +725,7 @@ footer .social a:hover {
     justify-content: space-around;
   }
   #home .image::after {
-    content: url(asset/discordcrashgem.png);
+    content: url(./asset/discordcrashgem.png);
     height: 15rem;
     width: 100vw;
     position: absolute;
