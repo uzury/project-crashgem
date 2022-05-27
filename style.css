@@ -347,7 +347,7 @@ nav.show div.icon-cross {
 }
 
 #home .image::after {
-  content: url(http://www.crashgem.com/uploads/8/1/8/2/81824876/discordcrashgem_orig.png);
+  content: url(./assets/discordcrashgem.png);
   height: 15rem;
   position: absolute;
   top: 85%;
